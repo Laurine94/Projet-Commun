@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Legume{% endblock %}
+
+{% block body %}
+    <h1>Edit Legume</h1>
+
+    {{ include('legume/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('legume_index') }}">back to list</a>
+
+    {{ include('legume/_delete_form.html.twig') }}
+{% endblock %}

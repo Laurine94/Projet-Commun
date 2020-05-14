@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Legume index{% endblock %}
+
+{% block body %}
+    <h1>Legume index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomLeg</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for legume in legumes %}
+            <tr>
+                <td>{{ legume.id }}</td>
+                <td>{{ legume.nomLeg }}</td>
+                <td><img src="{{ legume.image }}"</td>
+                <td>
+                    <a href="{{ path('legume_show', {'id': legume.id}) }}">show</a>
+                    <a href="{{ path('legume_edit', {'id': legume.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('legume_new') }}">Create new</a>
+{% endblock %}
