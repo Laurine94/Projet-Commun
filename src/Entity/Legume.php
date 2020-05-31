@@ -33,11 +33,24 @@ class Legume
      */
     private $categorie;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Association", mappedBy="legume1")
+     */
+    private $asso1;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Association", mappedBy="legume2")
+     */
+    private $asso2;
+
+ 
+   
    
 
     public function __construct()
     {
-        
+        $this->asso1 = new ArrayCollection();
+        $this->asso2 = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,5 +94,69 @@ class Legume
         return $this;
     }
 
+    /**
+     * @return Collection|Association[]
+     */
+    public function getAsso1(): Collection
+    {
+        return $this->asso1;
+    }
+
+    public function addAsso1(Association $asso1): self
+    {
+        if (!$this->asso1->contains($asso1)) {
+            $this->asso1[] = $asso1;
+            $asso1->setLegume1($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAsso1(Association $asso1): self
+    {
+        if ($this->asso1->contains($asso1)) {
+            $this->asso1->removeElement($asso1);
+            // set the owning side to null (unless already changed)
+            if ($asso1->getLegume1() === $this) {
+                $asso1->setLegume1(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Association[]
+     */
+    public function getAsso2(): Collection
+    {
+        return $this->asso2;
+    }
+
+    public function addAsso2(Association $asso2): self
+    {
+        if (!$this->asso2->contains($asso2)) {
+            $this->asso2[] = $asso2;
+            $asso2->setLegume2($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAsso2(Association $asso2): self
+    {
+        if ($this->asso2->contains($asso2)) {
+            $this->asso2->removeElement($asso2);
+            // set the owning side to null (unless already changed)
+            if ($asso2->getLegume2() === $this) {
+                $asso2->setLegume2(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
+    
   
 }

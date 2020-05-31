@@ -26,6 +26,18 @@ class LegumeController extends AbstractController
     }
 
     /**
+     * @Route("/ex/{id}", name="ex", methods={"GET"})
+     */
+    public function ex(Legume $legume): Response
+    {
+        
+        return $this->render('legume/ex.html.twig', [
+            'legume' => $legume,
+            'ba'=>$legume->getBonneAsso()
+        ]);
+    }
+
+    /**
      * @Route("/new", name="legume_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -53,8 +65,11 @@ class LegumeController extends AbstractController
      */
     public function show(Legume $legume): Response
     {
+       
+        dd($legume->getAsso1());
         return $this->render('legume/show.html.twig', [
             'legume' => $legume,
+            'ba'=>$legume->getBonneAsso()
         ]);
     }
 
@@ -91,4 +106,8 @@ class LegumeController extends AbstractController
 
         return $this->redirectToRoute('legume_index');
     }
+   
+    
+    
+
 }

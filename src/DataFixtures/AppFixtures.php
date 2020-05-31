@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Utilisateur;
 use App\Entity\Legume;
 use App\Entity\Categorie;
+use App\Entity\Association;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -60,11 +61,16 @@ class AppFixtures extends Fixture
 
          $navet=new Legume();
          $navet->setNomLeg("Navet")
-                  ->setImage("\images\navet.jpg")
+                  ->setImage("\images\'navet.jpg")
                   ->setCategorie($cat);
   
           $manager->persist($navet);
 
+          $asso1= new Association();
+          $asso1->setLegume1($carotte)
+                ->setLegume2($navet)
+                ->setEstBon(true);
+        $manager->persist($asso1);
         $manager->flush();
     }
 }
