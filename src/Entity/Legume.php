@@ -43,6 +43,11 @@ class Legume
      */
     private $asso2;
 
+    /**
+     * @ORM\Column(type="string", length=5000, nullable=true)
+     */
+    private $description;
+
  
    
    
@@ -152,6 +157,18 @@ class Legume
                 $asso2->setLegume2(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
