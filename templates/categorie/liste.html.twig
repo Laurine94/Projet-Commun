@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategorieController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 style="text-align: center; margin-top: 10px;  margin-bottom: 30px;">Choisissez une catégorie:</h1>
+            <div class="row">
+    
+        {% for categorie in categories %}
+        
+                <div class="col">
+                    <div class="card"  style="width: 18rem;">
+                            <img  class="card-img-top" src="{{ categorie.image }}"  width="150px" height="150px">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ categorie.nomCat }}</h5>
+                                <p class="card-text">{{categorie.description}}</p>
+                                <a href="{{path('legume_show_by_cat',{'id': categorie.id})}}" class="btn btn-primary">Selectionner</a>
+                            </div>
+                            
+                        
+                        
+                    </div>
+                </div>
+        {% else %}
+           no records found
+        {% endfor %}
+            </div>
+
+    </div>
+{% endblock %}
