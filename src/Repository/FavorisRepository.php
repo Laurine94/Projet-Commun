@@ -33,6 +33,20 @@ class FavorisRepository extends ServiceEntityRepository
         return $stmt->fetch();
     }
 
+    /**
+      * permet d'afficher un legume un favoris pour un utilisateur
+     * @return mixed[]
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function getAllFav($idDressseur){
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT id_legume_id FROM favoris WHERE favoris.id_utilisateur_id='.$idDressseur.';';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     // /**
     //  * @return Favoris[] Returns an array of Favoris objects
     //  */

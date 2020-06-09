@@ -10,12 +10,12 @@
         </div>
         <div class="col-3">
             {% if fav == "true" %}
-                <a href="{{path('legume_retirer_favoris',{'id': legume.id})}}"><button style="margin-top: 10px;  margin-bottom: 30px;" class="btn btn-warning" type="button"><i class="fas fa-heart" aria-hidden="true"></i>Retirer des Favoris</button></a>
+                <a href="{{path('legume_retirer_favoris',{'id': legume.id})}}"><button style="margin-top: 10px;  margin-bottom: 30px;" class="btn btn-warning" type="button"><i class="fas fa-heart" aria-hidden="true"></i>Retirer du potager</button></a>
                 
             {% elseif fav == "false" %}
-                <a href="{{path('legume_mettre_favoris',{'id': legume.id})}}"><button style="margin-top: 10px;  margin-bottom: 30px;" class="btn btn-warning" type="button"><i class="fas fa-heart" aria-hidden="true"></i>Ajouter Favoris</button></a>
+                <a href="{{path('legume_mettre_favoris',{'id': legume.id})}}"><button style="margin-top: 10px;  margin-bottom: 30px;" class="btn btn-warning" type="button"><i class="fas fa-heart" aria-hidden="true"></i>Ajouter au potager</button></a>
             {% else %}
-                <a href="{{path('app_login',{'id': legume.id})}}"><button style="margin-top: 10px;  margin-bottom: 30px;" class="btn btn-warning" type="button"><i class="fas fa-heart" aria-hidden="true"></i>Ajouter Favoris</button></a>
+                <a href="{{path('app_login',{'id': legume.id})}}"><button style="margin-top: 10px;  margin-bottom: 30px;" class="btn btn-warning" type="button"><i class="fas fa-heart" aria-hidden="true"></i>Ajouter au potager</button></a>
                  
             {% endif %}
         </div>

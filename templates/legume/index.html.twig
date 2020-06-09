@@ -4,7 +4,13 @@
 
 {% block body %}
 <div class="container">
+{% if page == 'favoris' %}
+    <h1 style="text-align: center; margin-top: 10px;  margin-bottom: 30px;">Mon potager</h1>
+{% else %}
+    
     <h1 style="text-align: center; margin-top: 10px;  margin-bottom: 30px;">Liste de toutes les plantes</h1>
+    
+{% endif %}
             <div class="row">
     
         {% for legume in legumes %}
@@ -21,6 +27,7 @@
                                 
                                 <h5 class="card-title">{{ legume.nom_leg }}</h5>
                             {% endif %}
+
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                 <a href="{{path('legume_show',{'id': legume.id})}}" class="btn btn-primary">Voir</a>
                             </div>

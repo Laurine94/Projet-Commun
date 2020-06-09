@@ -25,7 +25,11 @@
              <li class="nav-item ">
                 <a class="nav-link" href="{{path('categorie')}}">Les Catégories <span class="sr-only"></span></a>
             </li>
-       
+            {% if app.user %}
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{path('legumes_favoris')}}">Mon potager <span class="sr-only"></span></a>
+                </li>                
+            {% endif %}
         </ul>
         <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -47,6 +51,7 @@
         </ul>
     </div>
     </nav>
+
         {% block body %}{% endblock %}
 
         <script src="js/jquery.min.js"></script>

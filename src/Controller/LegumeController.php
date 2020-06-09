@@ -27,8 +27,32 @@ class LegumeController extends AbstractController
         return $this->render('legume/index.html.twig', [
             'legumes' => $legumeRepository->findAll(),
             'page'=>"tous"
-        ]);
-    }
+            ]);
+        }
+        
+        /**
+        * @Route("/favoris", name="legumes_favoris", methods={"GET","POST"})
+        */
+        public function voirFavoris(FavorisRepository $repo,LegumeRepository $repoLeg): Response
+        {
+          $idFav=$repo->getAllFav($this->getUser()->getId());
+          $tabFav=array();
+          $tab=array();
+          for($i=0;$i<sizeof($idFav);$i++){
+   
+              $favoris=$repoLeg->findById($idFav[$i]);
+              $tabFav[$i]=$favoris;
+   
+              $tab[$i]=$tabFav[$i][0];
+          }
+          
+
+          return $this->render('legume/index.html.twig', [
+              'legumes' => $tab,
+              'page'=>"favoris"
+          ]);
+        }
+
 
     /**
      * @Route("/ex/{id}", name="ex", methods={"GET"})
@@ -50,7 +74,7 @@ class LegumeController extends AbstractController
         $legume = new Legume();
         $form = $this->createForm(LegumeType::class, $legume);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($legume);
@@ -174,6 +198,8 @@ class LegumeController extends AbstractController
 
         return $this->redirectToRoute('legume_show',['id'=>$legume->getId()]);
     }
+
+
 
     /**
      * @Route("/{id}", name="legume_delete", methods={"DELETE"})
