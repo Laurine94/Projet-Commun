@@ -30,7 +30,7 @@
         {% for bonneAsso in bonnesAssos %}
         
                 <div class="col">
-                    <div class="card"  style="width: 18rem;">
+                    <div class="card"  style="width: 18rem;  margin-bottom:20px;">
                             <img  class="card-img-top" src="{{ bonneAsso.image }}"  width="80px" height="150px">
                             <div class="card-body">
                                 <h5 class="card-title">{{ bonneAsso.nomLeg }}</h5>
@@ -51,8 +51,8 @@
         {% for mauvaiseAsso in mauvaisesAssos %}
         
                 <div class="col">
-                    <div class="card"  style="width: 18rem;">
-                            <img  class="card-img-top" src="{{ mauvaiseAsso.image }}"  width="100px" height="100px">
+                    <div class="card"  style="width: 18rem; margin-bottom:20px;">
+                            <img  class="card-img-top" src="{{ mauvaiseAsso.image }}"  width="80px" height="150px">
                             <div class="card-body">
                                 <h5 class="card-title">{{ mauvaiseAsso.nomLeg }}</h5>
                                 <a href="{{path('legume_show',{'id': mauvaiseAsso.id})}}" class="btn btn-primary">Voir</a>
@@ -63,9 +63,38 @@
            Cette plante est solitaire...
         {% endfor %}
             </div>
+<hr style="padding-top:30px; ">
+            <div class="card" style="margin-top:20px;">
+                <div class="card-header">
+                    <h1> Avis </h1>
+                </div>
+                <div class="card-body">
+                        <table class="table">
+                            <tbody>
+                            {% for commentaire in commentaires %}
+                                <tr>
+                                <th scope="row">{{commentaire.prenom}} {{commentaire.nom}}</th>
+                                <td>{{commentaire.created_at | date('d/m/Y')}}</td>
+                                <td>{{commentaire.contenu}}</td>
+                               
+                                </tr>
+                            {% else %}
+                                Soyez le premier à commenter! :)
+                            {% endfor %}
+                            
+                            </tbody>
+                        </table>
+                                {{ form_start(form) }}
+                                    {{ form_widget(form.contenu) }}
+
+                                    <button class="btn btn-danger" style="margin-top:20px;">{{ button_label|default('Commenter') }}</button>
+                                    </br>
+                                {{ form_end(form) }}
+                </div>
+            </div>
             
         
-    <a href="{{ path('legume_index') }}">back to list</a>
+    <a href="{{ path('legume_index') }}">Retour à la liste</a>
 
 
     {{ include('legume/_delete_form.html.twig') }}

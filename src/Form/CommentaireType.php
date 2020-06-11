@@ -2,27 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Utilisateur;
+use App\Entity\Commentaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class UtilisateurType extends AbstractType
+class CommentaireType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('nom')
-        ->add('prenom')
-        ->add('email',EmailType::class)
+            ->add('contenu',TextareaType::class,[
+                'attr' => ['class'=>"form-control" ,'placeholder' => 'Partagez un commentaire ici !'],
+            ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Utilisateur::class,
+            'data_class' => Commentaire::class,
         ]);
     }
 }

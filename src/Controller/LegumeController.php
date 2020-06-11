@@ -6,8 +6,10 @@ use App\Entity\Legume;
 use App\Entity\Categorie;
 use App\Entity\Favoris;
 use App\Form\LegumeType;
+use App\Entity\Commentaire;
+use App\Form\CommentaireType;
 use App\Repository\FavorisRepository;
-
+use App\Repository\CommentaireRepository;
 use App\Repository\LegumeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -90,11 +92,15 @@ class LegumeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="legume_show", methods={"GET"})
+     * @Route("/{id}", name="legume_show", methods={"POST","GET"})
      */
-    public function show(Legume $legume,LegumeRepository $repo,FavorisRepository $repoFav): Response
+    public function show(Request $request,Legume $legume,LegumeRepository $repo,CommentaireRepository $repoCom,FavorisRepository $repoFav): Response
     {
-       
+        $commentaire = new Commentaire();
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $form->handleRequest($request);
+
+
        $idBonnesAssos=$repo->getBonneAsso($legume->getId());
        $tabBonnesAssos=array();
        $tabBA=array();
@@ -127,11 +133,26 @@ class LegumeController extends AbstractController
        else{
            $fav="";
        }
+    //On cherche tout les commentaire de ce legume
+       $commentaires=$repoCom->findAllByLegume($legume->getId());
+
+       if ($form->isSubmitted() && $form->isValid()) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $commentaire->setCreatedAt(new \DateTime('now'));
+        $commentaire->setIdLegume($legume);
+        $commentaire->setIdUtilisateur($this->getUser());
+        $entityManager->persist($commentaire);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('legume_show',['id'=>$legume->getId()]);
+    }
        return $this->render('legume/show.html.twig', [
             'legume' => $legume,
             'bonnesAssos'=>$tabBA,
             'mauvaisesAssos'=>$tabMA,
             'fav'=>$fav,
+            'form' => $form->createView(),
+            'commentaires'=>$commentaires
         ]);
     }
     /**

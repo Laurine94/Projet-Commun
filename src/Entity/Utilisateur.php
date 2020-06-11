@@ -50,9 +50,15 @@ class Utilisateur implements UserInterface
      */
     private $favoris;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="idUtilisateur")
+     */
+    private $commentaires;
+
     public function __construct()
     {
         $this->favoris = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -182,6 +188,37 @@ class Utilisateur implements UserInterface
             // set the owning side to null (unless already changed)
             if ($favori->getIdUtilisateur() === $this) {
                 $favori->setIdUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setIdUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->contains($commentaire)) {
+            $this->commentaires->removeElement($commentaire);
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getIdUtilisateur() === $this) {
+                $commentaire->setIdUtilisateur(null);
             }
         }
 
