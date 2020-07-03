@@ -1,0 +1,48 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 style="text-align: center; margin-top: 10px;  margin-bottom: 30px;">Liste des plantes:</h1>
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>Catégorie</th>
+                            <th>Image</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+        {% for plante in plantes %}
+        
+                        <tr>
+                            <td>{{plante.id}}</td>
+                            <td>{{plante.nomLeg}}</td>
+                            <td>{{plante.categorie.nomCat}}</td>
+                            <td> <img  class="card-img-top" src="{{ plante.image }}"  width="10px" height="80px"></td>
+                            <td>{{plante.description}}</td>
+
+                            <td>
+                                <a href="#"><button class="btn btn-info" type="button"><i class="fa fa-search">Voir</i></button></a>
+                                <a href="#"><button class="btn btn-dark" type="button"><i class="fas fa-pen">Editer</i></button></a>
+                                <a *href="#"> <button class="btn btn-danger" type="button"><i class="fas fa-trash">Supprimer</i></button></a>
+                            
+                            </td>
+                        </tr>
+        {% else %}
+            <tr>    
+                <td colspan="53">Il n'y a pas de catégorie dans la base de donnée.</td>
+            </tr>
+        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+    </div>
+{% endblock %}

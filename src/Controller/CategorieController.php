@@ -14,7 +14,6 @@ class CategorieController extends AbstractController
     public function liste(CategorieRepository $repo)
     {
         $categories=$repo->findAll();
-        //dd($categories);
         return $this->render('categorie/liste.html.twig', [
             'categories' => $categories,
         ]);

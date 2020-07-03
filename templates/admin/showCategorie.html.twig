@@ -1,0 +1,23 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Admin Categorie{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+        <h1  style="text-align: center; margin-top: 10px;  margin-left: 250px;  margin-bottom: 30px;">{{ categorie.nomCat }}</h1>
+        </div>
+       
+    </div>
+             <img  style="text-align: center; margin-top: 10px;  margin-bottom: 30px;" src="{{ categorie.image }}">
+            <p  style="text-align: justify; margin-top: 10px;  margin-bottom: 30px;"> {{categorie.description}}</p>
+
+         
+            
+        
+    <a href="{{ path('admin_categories') }}">Retour à la liste</a>
+
+
+</div>
+{% endblock %}
