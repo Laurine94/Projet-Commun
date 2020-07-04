@@ -5,13 +5,11 @@
 {% block body %}
 <div class="container">
     <h1>Editer la catégorie</h1>
-     <form class="form-group">
     {{ form_start(form) }}
 
         {{ form_widget(form) }}
         <button class="btn btn-warning">{{ button_label|default('Valider') }}</button>
     {{ form_end(form) }}
-    </form>
     <a href="{{ path('admin_categories') }}">Retour</a>
 </div>
 {% endblock %}

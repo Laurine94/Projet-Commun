@@ -24,7 +24,7 @@
                         <tr>
                             <td>{{categorie.id}}</td>
                             <td>{{categorie.nomCat}}</td>
-                            <td> <img  class="card-img-top" src="{{ categorie.image }}"  width="50px" height="50px"></td>
+                            <td> <img  class="card-img-top" src="{{ categorie.image }}"  style=" width:150px; "height="100px"></td>
                             <td>{{categorie.description}}</td>
                             <td>
                                 <a href="{{ path('admin_categorie', {'id': categorie.id}) }}"><button class="btn btn-info" type="button"><i class="fa fa-search">Voir</i></button></a>
