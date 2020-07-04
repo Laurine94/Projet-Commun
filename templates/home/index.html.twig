@@ -3,18 +3,70 @@
 {% block title %}Bienvenue!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 1500px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
 
 <div class="example-wrapper">
-    <h1>Bienvenue</h1>
+	<h1 class="display-4 font-italic" style="text-align:center; margin-bottom:40px;">La permaculture</h1>
+    <div class="row">
+        <div class="col">
+			<img src="{{ asset('/images/potager_index.jpg') }}" class="align-self-center mr-3" alt="potager permacole" style="padding-top:40px;">
+		</div>
+        <div class="col">
+        
+			<p class="lead my-3">La permaculture (contraction de "agriculture permanente") est un principe agricole s'inspirant des écosystèmes. Elle permet concevoir des installations humaines harmonieuses, durables, résilientes, efficaces et économes en énergie telles que les écosystèmes naturels. Ses conceptions sont basés sur le principe de base: comment positionner au mieux chaque élément afin qu'il puisse interagir positivement avec les autres. Créez des interactions bénéfiques, comme dans une nature où tout est connecté. Par conséquent, chaque fonction est remplie de plusieurs éléments et chaque élément a plusieurs fonctions, le gaspillage de l'un devient le produit de l'autre, permettant à l'ensemble d'être supérieur à la somme des parties. C'est une vision holistique et organique du monde. La permaculture est basée sur trois principes éthiques: le soin de la Terre, le soin des personnes, le partage équitable des ressources.</p>
+			<p class="lead my-3">Vous trouverez sur ce site des associations conseillées selon l'expérience de
+			</p>
+			<p class="lead mb-0">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/cousi/ProjetCommun/permaculture/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/cousi/ProjetCommun/permaculture/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+				<a href="#" class="text-white font-weight-bold">Consulter le forum</a>
+			</p>
+        </div>
+		
+
+	</div>
+	
+	<div class="row">
+		<div class="col">
+			<div class="card" style=" width:50%; ">
+				<img src="\images\narjess_avatar.png" alt="narjess_avatar" style=" width:170px; margin-left:30px" height="150px">
+				<div class="caption">
+					<h3 style="text-align:center;">Narjess Zayati</h3>
+					<p style="text-align:center;" >Spécialiste front-end</p>
+
+				</div>
+			</div>
+		</div>
+        <div class="col">
+			<div class="card"  style=" width:50%; ">
+				<img src="\images\laurine_avatar.png" alt="laurine_avatar"style=" width:170px; margin-left:30px " height="150px">
+				<div class="caption">
+					<h3 style="text-align:center;">Laurine Cousin</h3>
+					<p style="text-align:center;">Spécialiste back-end</p>
+
+				</div>
+			</div>
+		</div>
+        <div class="col">
+            <div class="card"  style=" width:50%; " >
+                <img src="\images\estelle_avatar.png" alt="estelle_avatar"style=" width:170px; margin-left:30px" height="150px">
+                <div class="caption">
+                    <h3 style="text-align:center;">Estelle Hu</h3>
+                    <p style="text-align:center;">Spécialiste architecture et base de données</p>
+
+                </div>
+            </div>
+        </div>
+	</div>
 </div>
 {% endblock %}
